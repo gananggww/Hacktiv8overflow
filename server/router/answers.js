@@ -18,8 +18,8 @@ const midty = (req, res, next) => {
   }
 }
 
-router.get("/", midty, answers.getAll)
-router.post("/", midty, answers.insert)
+router.get("/:id", midty, answers.getAll)
+router.post("/:id", midty, answers.insert)
 router.delete("/:id", midty, answers.remove)
 
 

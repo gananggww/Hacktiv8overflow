@@ -23,7 +23,7 @@
         <div class="fourteen wide column">
           <div class="content">
             <div class="ui header">
-              <a @click="pindahCuy(all)" class="header"><b>{{all.title}}</b></a>
+              <a @click="pindahCuy(all)" class="header"><b>Vote</b></a>
             </div>
             <div class="ui divider meta">
               <span></span>

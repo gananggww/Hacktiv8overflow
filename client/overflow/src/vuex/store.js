@@ -16,7 +16,8 @@ const state = {
   createQuest: null,
   questions: null,
   questID: null,
-  myquest: null
+  myquest: null,
+  answerTemp: null
 }
 const getters = {
   filterTimeline: (state, getters) => (model) => {
@@ -76,6 +77,12 @@ const mutations = {
   },
   setDeleteMyQuest (state, payload) {
     state.myquest.splice(payload.idx, 1)
+  },
+  setPostAnswer (state, payload) {
+    state.answerTemp.push(payload)
+  },
+  setGetAnswer (state, payload) {
+    state.answerTemp = payload
   }
 }
 
@@ -165,6 +172,28 @@ const actions = {
     })
     .catch(err => {
       console.log(err)
+    })
+  },
+  postAnswer (context, payload) {
+    http.post(`/answers/${payload.id}`, {
+      answer: payload.answer
+    }, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    .then(response => {
+      context.commit('setPostAnswer', response.data)
+    })
+  },
+  getAnswers (context, payload) {
+    http.get(`answers/${payload}`, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    .then(response => {
+      context.commit('setGetAnswer', response.data)
     })
   }
 }

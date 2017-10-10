@@ -3,14 +3,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let answersSchema = new Schema({
-  answer: {
-    type: String,
-    required: true
-  },
+  answer: String,
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users',
-    required: true
+    // required: true
   },
   questions: {
     type: Schema.Types.ObjectId,

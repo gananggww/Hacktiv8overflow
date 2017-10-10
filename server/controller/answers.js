@@ -1,5 +1,5 @@
 const ObjectId = require("mongodb").ObjectId
-const db = require("../model/questions")
+const db = require("../model/answers")
 const jwt = require('jsonwebtoken');
 const dbQuestions = require('../model/questions')
 
@@ -7,16 +7,21 @@ const insert = (req, res)=>{
   db.create({
     answer: req.body.answer,
     user: req.headers.oten.id,
-    questions: ObjectId(req.params.id)
+    questions: req.params.id
   })
   .then(response=>{
-    // res.send(response)
+    res.send(response)
+    console.log(response)
+    console.log(req.params.id);
     dbQuestions.update({
-      _id: ObjectId(req.params.id)
+      _id: req.params.id
     }, {
       $push: {
         answers: response._id
       }
+    })
+    .then(response => {
+      res.send(response)
     })
   })
   .catch(err=>{
@@ -24,8 +29,11 @@ const insert = (req, res)=>{
   })
 }
 const getAll = (req, res)=>{
-  db.find({user:req.headers.oten.id})
-  .populate({path:'users', select: 'username'})
+  db.find({
+    questions:req.params.id
+  })
+  .populate('user')
+  .populate('questions')
   .then(rows=>{
     // console.log(rows);
     res.send(rows)

@@ -3,18 +3,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let questionSchema = new Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  content: {
-    type: String,
-    required: true
-  },
+  title: String,
+  content: String,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users',
-    required: true
+    ref: 'users'
+    // required: true
   },
   answers: [{
     type: Schema.Types.ObjectId,
