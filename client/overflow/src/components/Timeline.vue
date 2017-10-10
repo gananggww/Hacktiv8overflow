@@ -23,7 +23,7 @@
         <div class="fourteen wide column">
           <div class="content">
             <div class="ui header">
-              <a @click="pindahCuy(all)" class="header"><b>Vote</b></a>
+              <a @click="pindahCuy(all)" class="header"><b>{{all.title}}</b></a>
             </div>
             <div class="ui divider meta">
               <span></span>
@@ -36,7 +36,7 @@
             </div>
             <div class="horizontal segments extra">
               <span>
-                <a class="item" @click="doDelMyQuest(all._id)"><i class="user icon"></i>{{all.user.fullname}}</a>
+                <a class="item" @click="doDelMyQuest(all._id)"><i class="user icon"></i>{{all.user}}</a>
                 <i class="history icon"></i>{{all.updatedAt}}
               </span>
             </div>

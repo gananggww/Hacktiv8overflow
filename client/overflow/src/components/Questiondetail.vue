@@ -3,7 +3,7 @@
     <div class="ui container">
       <div class="ui segment bg">
         <div class="judul">
-          <!-- <h1>{{apadeh[0].user.fullname}}'s question</h1> -->
+          <!-- <h1>{{apadeh[0].user.name}}'s question</h1> -->
         </div>
         <div class="ui  grid items jarak" v-for="all in apadeh">
           <div class="two wide column">
@@ -24,7 +24,7 @@
               <div class="extra">
                 <p>
                   <a class="item" @click="doDelMyQuest(all._id)"></a>
-                  <i class="user icon"></i>{{all.user.username}}
+                  <i class="user icon"></i>{{all.user.name}}
                 </p>
                 </div>
               </div>
@@ -49,7 +49,7 @@
           <div class="fourteen wide column">
             <div class="content">
               <div class="ui header">
-                <div @click="pindahCuy(all)" class="header"><b>Replay : '{{all.questions.title}}' from '{{all.user.fullname}}'</b></div>
+                <div @click="pindahCuy(all)" class="header"><b>Replay : '{{all.questions.title}}' from '{{all.user.name}}'</b></div>
               </div>
               <div class="ui meta">
                 <span></span>
@@ -62,7 +62,7 @@
               </div>
               <div class="horizontal segments extra">
                 <span>
-                  <i class="user icon"></i>{{all.user.fullname}}
+                  <i class="user icon"></i>{{all.user.name}}
                   <i class="history icon"></i>{{all.updatedAt}}
                 </span>
               </div>

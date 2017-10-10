@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './vuex/store'
+import FBSignInButton from 'vue-facebook-signin-button'
 
+Vue.use(FBSignInButton)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -41,7 +41,7 @@
               <div class="horizontal segments extra">
                 <span>
                   <a><i @click="del(all._id, index)"class="trash icon"></i></a>
-                  <i class="user icon"></i>{{all.user.fullname}}
+                  <i class="user icon"></i>{{all.user.name}}
                   <i class="history icon"></i>{{all.updatedAt}}
                 </span>
               </div>
