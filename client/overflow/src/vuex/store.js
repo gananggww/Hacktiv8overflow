@@ -15,12 +15,29 @@ const state = {
   signup: [],
   createQuest: null,
   questions: null,
-  questID: null
+  questID: null,
+  myquest: null
 }
 const getters = {
-  filterSelfArticles: (state, getters) => (model) => {
+  filterTimeline: (state, getters) => (model) => {
     console.log('ini getters', getters)
     let articlesArray = state.questions
+    let searchString = model
+
+    if (!searchString) {
+      return articlesArray
+    }
+    searchString = searchString.trim().toLowerCase()
+    articlesArray = articlesArray.filter(function (item) {
+      if (item.title.toLowerCase().indexOf(searchString) !== -1) {
+        return item
+      }
+    })
+    return articlesArray
+  },
+  filterSelf: (state, getters) => (model) => {
+    console.log('ini getters', getters)
+    let articlesArray = state.myquest
     let searchString = model
 
     if (!searchString) {
@@ -53,8 +70,15 @@ const mutations = {
   },
   setId (state, payload) {
     state.questID = payload
+  },
+  setMyQuestion (state, payload) {
+    state.myquest = payload
+  },
+  setDeleteMyQuest (state, payload) {
+    state.myquest.splice(payload.idx, 1)
   }
 }
+
 const actions = {
   getUser (context, payload) {
     http.post('/users/login', {
@@ -95,6 +119,7 @@ const actions = {
     })
     .then(response => {
       context.commit('setCreateQuest', response.data)
+      // router.push('/')
     })
     .catch(err => {
       console.log(err)
@@ -114,6 +139,32 @@ const actions = {
     .then(response => {
       console.log('response id', response)
       context.commit('setId', response.data)
+    })
+  },
+  myQuestion (context, payload) {
+    http.get('/questions/', {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    .then(response => {
+      context.commit('setMyQuestion', response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  },
+  doDelMyQuest (context, payload) {
+    http.delete(`/questions/${payload.id}`, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    .then(response => {
+      context.commit('setDeleteMyQuest', payload)
+    })
+    .catch(err => {
+      console.log(err)
     })
   }
 }

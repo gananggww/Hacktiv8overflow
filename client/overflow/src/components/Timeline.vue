@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ui segment bg">
+    <div class="ui basic segment bg">
       <div class="ui stackable two wide column grid">
         <div class="eleven wide column">
           <div class="judul">
@@ -34,10 +34,10 @@
             <div class="ui divider meta">
               <span></span>
             </div>
-            <div class="extra">
+            <div class="horizontal segments extra">
               <span>
-                <p><i class="user icon"></i>{{all.user.fullname}}</p>
-                <p><i class="history icon"></i>{{all.updatedAt}}</p>
+                <a class="item" @click="doDelMyQuest(all._id)"><i class="user icon"></i>{{all.user.fullname}}</a>
+                <i class="history icon"></i>{{all.updatedAt}}
               </span>
             </div>
           </div>
@@ -70,10 +70,10 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'filterSelfArticles'
+      'filterTimeline'
     ]),
     quest () {
-      return this.filterSelfArticles(this.searchString)
+      return this.filterTimeline(this.searchString)
     }
   },
   mounted () {

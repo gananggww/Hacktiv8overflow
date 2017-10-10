@@ -19,7 +19,7 @@ const insert = (req, res)=>{
 
 const getTimelineQuest = (req, res)=>{
   db.find()
-  .populate({path:'user', model: 'users'})
+  .populate('user')
   .then(response => {
     res.send(response)
   })
@@ -30,7 +30,7 @@ const getTimelineQuest = (req, res)=>{
 
 const getAll = (req, res)=>{
   db.find({user:req.headers.oten.id})
-  .populate({path:'user', select: 'username'})
+  .populate('user')
   .then(rows=>{
     // console.log(rows);
     res.send(rows)

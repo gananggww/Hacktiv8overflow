@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="ui two item menu">
     <!-- <router-view/> -->
-      <a @click="goQuest" class="item" v-bind:class="{'active': isActiveTimeline}">Timeline</a>
-      <a @click="goForm" class="item" v-bind:class="{'active': isActiveForm}">Lets Question</a>
+      <a @click="goQuest" class="item" v-bind:class="{'active': isActiveTimeline}"><i class="unordered list icon"></i>Timeline</a>
+      <a @click="goForm" class="item" v-bind:class="{'active': isActiveForm}"><i class="history icon"></i>Lets Question</a>
   </div>
 </template>
 

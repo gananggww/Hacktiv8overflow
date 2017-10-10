@@ -3,7 +3,9 @@
     <div class="ui menu">
       <a @click="home" class="item corp">
         <i class="home icon"></i>
-        Hacktiv8overflow
+        <b>
+          Hacktiv8overflow
+        </b>
       </a>
       <buttonmyquestion v-show="token !== null  "/>
 

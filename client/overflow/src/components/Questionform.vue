@@ -32,6 +32,7 @@ export default {
     ]),
     submitCreateQuest () {
       this.createQuestion(this.formCreate)
+      this.$router.push('/')
     }
   }
 

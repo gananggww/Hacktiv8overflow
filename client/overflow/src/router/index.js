@@ -6,6 +6,7 @@ import Register from '@/components/Register'
 import Timeline from '@/components/Timeline'
 import Questiondetail from '@/components/Questiondetail'
 import Questionform from '@/components/Questionform'
+import Questionself from '@/components/Questionself'
 
 Vue.use(Router)
 
@@ -13,6 +14,9 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/myquest',
+      component: Questionself
+    }, {
       path: '/login',
       component: Login
     }, {
