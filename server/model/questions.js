@@ -20,6 +20,8 @@ let questionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'answers'
   }]
+}, {
+  timestamps: true
 })
 
 let questionModel = mongoose.model('questions', questionSchema)

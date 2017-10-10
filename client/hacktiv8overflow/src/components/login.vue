@@ -27,7 +27,7 @@
         <label>password</label>
         <input type="password" name="last-name" v-model="formLogin.password" placeholder="Pssword">
       </div>
-      <router-link :to="'/'"><button class="ui orange button" type="submit" @click="signin()">Submit</button></router-link>
+      <button class="ui orange button" type="submit" @click="signin()">Submit</button>
     </form>
   </div>
   <div class="ui segment container">

@@ -1,8 +1,10 @@
 import vue from 'vue'
 import vuex from 'vuex'
 import axios from 'axios'
+import router from '../router/index'
 
 vue.use(vuex)
+vue.use(router)
 
 const http = axios.create({
   baseURL: `http://localhost:3000`
@@ -59,6 +61,7 @@ const actions = {
     .then(response => {
       console.log('data di action ====> ', response)
       localStorage.setItem('token', response.data.token)
+      router.push('/')
       context.commit('setUser', response.data)
     })
     .catch(err => {

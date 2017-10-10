@@ -20,19 +20,12 @@ const insert = (req, res)=>{
 const getTimelineQuest = (req, res)=>{
   db.find()
   .populate({path:'user', model: 'users'})
-  .exec((err, response) => {
-    if(!err) {
-      res.send(response)
-    } else {
-      res.send(err)
-    }
+  .then(response => {
+    res.send(response)
   })
-  // .then(response=>{
-  //   res.send(response)
-  // })
-  // .catch(err=>{
-  //   res.send(err)
-  // })
+  .catch(err => {
+    res.send(err)
+  })
 }
 
 const getAll = (req, res)=>{
@@ -49,7 +42,8 @@ const getAll = (req, res)=>{
 }
 
 const getid = (req, res) => {
-  db.find({_id: ObjectId(req.params.id)}).populate({path:'user', select: 'username'})
+  db.find({_id: ObjectId(req.params.id)})
+  .populate('user')
   .then(response => {
     res.send(response)
   })

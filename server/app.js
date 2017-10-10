@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/hacktivoverflow', (err)=>{
+mongoose.connect('mongodb://localhost/hacktiv8overflow', (err)=>{
   if(err){
     console.log(err);
   }else{

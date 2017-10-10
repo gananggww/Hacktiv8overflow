@@ -23,6 +23,8 @@ const userSchema = new Schema({
   secret: {
     type: String
   }
+}, {
+  timestamps: true
 })
 
 const userModel = mongoose.model('users', userSchema)

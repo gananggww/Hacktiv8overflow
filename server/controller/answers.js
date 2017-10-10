@@ -12,8 +12,7 @@ const insert = (req, res)=>{
   .then(response=>{
     // res.send(response)
     dbQuestions.update({
-      _id: ObjectId(req.params.id),
-      user: req.headers.oten.id
+      _id: ObjectId(req.params.id)
     }, {
       $push: {
         answers: response._id
@@ -40,8 +39,7 @@ const remove = (req, res)=>{
   db.remove({_id: ObjectId(req.params.id), user:req.headers.oten.id})
   .then(response=>{
     dbQuestions.update({
-      _id: ObjectId(req.params.id),
-      user: req.headers.oten.id
+      _id: ObjectId(req.params.id)
     },{
       $pull: response._id
     })
