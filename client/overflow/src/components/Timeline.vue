@@ -16,8 +16,13 @@
       </div>
       <div class="ui link grid segment items jarak" v-for="all in quest">
         <div class="two wide column">
-          <div class="ui circular image">
-            <img src="https://maxcdn.icons8.com/Share/icon/Cinema//avatar1600.png">
+          <div class="ui circular fluid image">
+            <div v-if="all.user.img === undefined">
+              <img src="https://maxcdn.icons8.com/Share/icon/Cinema//avatar1600.png">
+            </div>
+            <div v-else>
+              <img :src="all.user.img">
+            </div>
           </div>
         </div>
         <div class="fourteen wide column">

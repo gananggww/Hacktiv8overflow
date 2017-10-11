@@ -7,7 +7,7 @@
       <div class="ui  basic segment stackable two wide column grid">
         <div class="eleven wide column">
           <div class="judul">
-            <h1>Questions Timeline</h1>
+            <h1>{{myLove[0].user.name}}'s questions</h1>
           </div>
         </div>
         <div class="right aligned five wide column">
@@ -20,8 +20,13 @@
       <div class="ui segment container">
         <div class="ui link grid vertical segment items jarak" v-for="(all, index) in myLove">
           <div class="two wide column">
-            <div class="ui circular image">
-              <img src="https://maxcdn.icons8.com/Share/icon/Cinema//avatar1600.png">
+            <div class="ui circular fluid image">
+              <div v-if="all.user.img === undefined">
+                <img src="https://maxcdn.icons8.com/Share/icon/Cinema//avatar1600.png">
+              </div>
+              <div v-else>
+                <img :src="all.user.img">
+              </div>
             </div>
           </div>
           <div class="fourteen wide column">

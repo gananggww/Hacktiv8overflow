@@ -63,7 +63,7 @@ const mutations = {
     state.signup = payload
   },
   setCreateQuest (state, payload) {
-    state.questions.push(payload)
+    state.questions.unshift(payload)
     state.createQuest = payload
   },
   setQuestions (state, payload) {
@@ -79,7 +79,7 @@ const mutations = {
     state.myquest.splice(payload.idx, 1)
   },
   setPostAnswer (state, payload) {
-    state.answerTemp.push(payload)
+    state.answerTemp.unshift(payload)
   },
   setGetAnswer (state, payload) {
     state.answerTemp = payload
