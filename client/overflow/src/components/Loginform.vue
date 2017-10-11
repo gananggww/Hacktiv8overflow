@@ -11,7 +11,7 @@
       <input type="password" v-model="formLogin.password" placeholder="Pssword">
     </div>
     <button class="ui orange button" type="submit">Submit</button>
-    <label>you don't have account ? <a class="item" @click="goRegister()"><b>register</b></a></label>
+    <label>you don't have account ? <a class="item" @click="goRegister()"><b>Register</b></a></label>
   </form>
 </div>
 </template>

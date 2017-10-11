@@ -31,8 +31,16 @@
           </div>
           <div class="fourteen wide column">
             <div class="content">
-              <div class="ui header">
-                <a @click="pindahCuy(all)" class="header"><b>{{all.title}}</b></a>
+              <div class="ui stackable three column grid header">
+                <div class="twelve wide column">
+                  <a @click="pindahCuy(all)" class="header"><b>{{all.title}}</b></a>
+                </div>
+                <div class="center aligned two wide column">
+                  <button @click="edit(all)" class="ui right floated basic mini black fluid button"><i class="edit icon"></i>edit</button>
+                </div>
+                <div class="center aligned two wide column">
+                  <button @click="del(all._id, index)" class="ui right floated mini basic fluid black button"><i class="trash icon"></i>hapus</button>
+                </div>
               </div>
               <div class="ui divider meta">
                 <span></span>
@@ -45,11 +53,24 @@
               </div>
               <div class="horizontal segments extra">
                 <span>
-                  <a><i @click="del(all._id, index)"class="trash icon"></i></a>
                   <i class="user icon"></i>{{all.user.name}}
                   <i class="history icon"></i>{{all.updatedAt}}
                 </span>
               </div>
+            </div>
+            <div v-show="shown === true" class="ui form" @submit.privent="mamah(all._id, index)">
+              <div class="ui horizontal divider">
+                'Edit'
+              </div>
+              <div class="field">
+                <label>Title</label>
+                <input v-model="payload.title" classrows="2"></input>
+              </div>
+              <div class="field">
+                <label>Question</label>
+                <textarea v-model="payload.content" classrows="2"></textarea>
+              </div>
+              <button class="ui green button" @click="mamah(all._id, index)">Submit</button>
             </div>
           </div>
         </div>
@@ -65,7 +86,12 @@ import urlSlug from 'url-slug'
 export default {
   data () {
     return {
-      searchString: ''
+      searchString: '',
+      shown: false,
+      payload: {
+        title: '',
+        content: ''
+      }
     }
   },
   components: {
@@ -75,7 +101,8 @@ export default {
   methods: {
     ...mapActions([
       'myQuestion',
-      'doDelMyQuest'
+      'doDelMyQuest',
+      'editMyQuest'
     ]),
     ...mapState([
       'myquest'
@@ -90,6 +117,23 @@ export default {
     pindahCuy (all) {
       var slug = urlSlug(all.title)
       this.$router.push(`${all.user.username}/${all._id}/${slug}`)
+    },
+    edit (all) {
+      if (this.shown === true) {
+        this.shown = false
+      }
+      this.shown = true
+      this.payload.title = all.title
+      this.payload.content = all.content
+    },
+    mamah (id, idx) {
+      var payload = {
+        id: id,
+        idx: idx,
+        title: this.payload.title,
+        content: this.payload.content
+      }
+      this.editMyQuest(payload)
     }
   },
   computed: {

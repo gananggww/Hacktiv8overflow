@@ -80,13 +80,23 @@ const edit = (req, res)=>{
   db.update({_id: ObjectId(req.params.id), user: req.headers.oten.id},{
     title: req.body.title,
     content: req.body.content,
-    user: req.body.oten.id,
+    user: req.headers.oten.id,
   })
-  .then(()=>{
-    res.send("Berhasil edit")
+  .then(() => {
+    db.findOne({_id: req.params.id})
+    .then(response => {
+      response.populate('user', (err) => {
+        if (!err) {
+          res.send(response)
+        } else {
+          res.send(err)
+        }
+      })
+    }).catch(err=>{res.send(err)})
   })
   .catch(err=>{
-    res.send("Gagal edit")
+    // res.send(err)
+    console.log(err)
   })
 }
 module.exports = {
