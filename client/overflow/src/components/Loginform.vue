@@ -1,7 +1,7 @@
 <template lang="html">
 <div class="">
   <h1>Login</h1>
-  <form class="ui form" @submit.privent="signin()">
+  <form class="ui form">
     <div class="field">
       <label>Username</label>
       <input type="text" v-model="formLogin.username" placeholder="Username">
@@ -10,7 +10,7 @@
       <label>password</label>
       <input type="password" v-model="formLogin.password" placeholder="Pssword">
     </div>
-    <button class="ui orange button" type="submit">Submit</button>
+    <button class="ui orange button" @click="signin()" type="submit">Submit</button>
     <label>you don't have account ? <a class="item" @click="goRegister()"><b>Register</b></a></label>
   </form>
 </div>
@@ -33,6 +33,7 @@ export default {
       'getUser'
     ]),
     signin () {
+      console.log('ini di submit ')
       this.getUser(this.formLogin)
     },
     goRegister () {

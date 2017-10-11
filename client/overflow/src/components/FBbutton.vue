@@ -32,8 +32,9 @@ export default {
           }
         })
         .then(loug => {
-          console.log(loug)
+          console.log(loug.data.name._id)
           localStorage.setItem('token', loug.data.token)
+          localStorage.setItem('id', loug.data.name._id)
           this.$router.push('/')
         })
         .catch(err => {

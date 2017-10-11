@@ -22,14 +22,13 @@ const login = (req, res)=>{
       var token = jwt.sign({ id: row._id, username : row.username }, 'shhhhh');
       res.send({token : token, username : row.username})
       // res.send("berhasil")
-    }
-    else{
-      res.send({token : null})
+    } else {
+      res.send(err)
     }
   })
   .catch(err=>{
     // console.log(err);
-    res.send({token : null})
+    res.send(err)
   })
 }
 

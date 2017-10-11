@@ -7,13 +7,19 @@
         </div>
         <div class="ui  grid items jarak" v-for="all in apadeh">
           <div class="two wide column">
-            <div class="ui small image">
-              <img src="https://maxcdn.icons8.com/Share/icon/Cinema//avatar1600.png">
+            <div class="ui circular fluid image">
+              <div v-if="all.user.img === undefined">
+                <img src="https://maxcdn.icons8.com/Share/icon/Cinema//avatar1600.png">
+              </div>
+              <div v-else>
+                <img :src="all.user.img">
+              </div>
             </div>
           </div>
           <div class="fourteen wide column">
             <div class="content">
               <a class="header"><b>{{all.title}}</b></a>
+
               <div class="ui divider meta">
               </div>
               <div class="description">
@@ -40,7 +46,7 @@
             <button class="ui green button" @click="mamah()">Submit</button>
           </div>
         </div>
-        <div class="ui grid segment items jarak" v-for="all in answersnyaya">
+        <div class="ui grid segment items jarak" v-for="(all, index) in answersnyaya">
           <div class="two wide column">
             <div class="ui circular fluid image">
               <div v-if="all.user.img === undefined">
@@ -53,8 +59,13 @@
           </div>
           <div class="fourteen wide column">
             <div class="content">
-              <div class="ui header">
-                <div @click="pindahCuy(all)" class="header"><b>Replay : '{{all.questions.title}}' from '{{all.user.name}}'</b></div>
+              <div class="ui stackable grid two column header">
+                <div class="fourteen wide column">
+                  <div @click="pindahCuy(all)" class="header"><b>Replay : '{{all.questions.title}}' from '{{all.user.name}}'</b></div>
+                </div>
+                <div v-show = "all.user._id === idUser" class="center aligned two wide column">
+                  <button @click="del(all._id, index)" class="ui right floated mini basic fluid black button"><i class="trash icon"></i>hapus</button>
+                </div>
               </div>
               <div class="ui meta">
                 <span></span>
@@ -85,7 +96,7 @@ export default {
   data () {
     return {
       activated: false,
-      // idQuest: '',
+      idUser: localStorage.getItem('id'),
       answer: ''
     }
   },
@@ -101,7 +112,8 @@ export default {
     ...mapActions([
       'doId',
       'postAnswer',
-      'getAnswers'
+      'getAnswers',
+      'delAnswer'
     ]),
     ...mapState([
       'questID',
@@ -118,6 +130,13 @@ export default {
         answer: this.answer
       }
       this.postAnswer(payload)
+    },
+    del (id, idx) {
+      var payload = {
+        id: id,
+        idx: idx
+      }
+      this.delAnswer(payload)
     }
   },
   mounted () {

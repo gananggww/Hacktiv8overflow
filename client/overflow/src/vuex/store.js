@@ -89,6 +89,9 @@ const mutations = {
     console.log('ini idx di mutations : ', payload.idx)
     state.myquest.splice(payload.idx, 1)
     state.myquest.unshift(payload.response)
+  },
+  setDelAnswer (state, payload) {
+    state.answerTemp.splice(payload, 1)
   }
 }
 
@@ -99,9 +102,10 @@ const actions = {
       password: payload.password
     })
     .then(response => {
+      // console.log(response.data)
       localStorage.setItem('token', response.data.token)
-      router.push('/')
       context.commit('setUser', response.data)
+      // router.push('/')
     })
     .catch(err => {
       console.log(err)
@@ -218,6 +222,16 @@ const actions = {
         idx: payload.idx
       }
       context.commit('setEditMyQuest', payloadTo)
+    })
+  },
+  delAnswer (context, payload) {
+    http.put(`questions/${payload.id}`, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    .then(response => {
+      context.commit('setDelAnswer', payload.idx)
     })
   }
 }

@@ -6,7 +6,7 @@
         <input type="text" v-model="formCreate.title" placeholder="Your Title">
       </div>
       <div class="field">
-        <label>Content</label>
+        <label>Question</label>
         <textarea rows="2"type="text" v-model="formCreate.content" placeholder="Your Question"/>
       </div>
       <button class="ui fluid orange github button" type="submit" @click="submitCreateQuest()">Submit</button>
