@@ -9,17 +9,26 @@ const insert = (req, res)=>{
     user: req.headers.oten.id,
     answers: []
   })
-  .exec((err, response) => {
-    if (!err) {
-      res.send(response)
-    } else {
-      res.send(err)
-    }
+  .then(response => {
+    console.log('blm di populate ', response)
+    response.populate('user', function(err) {
+      if (err) {
+        console.log('ternyata error ', err)
+        res.send(err)
+      }
+      else {
+        res.send(response)
+      }
+    })
+  })
+  .catch(err => {
+    res.send(err)
   })
 }
 
 const getTimelineQuest = (req, res)=>{
   db.find()
+  .sort([['updatedAt', 'descending']])
   .populate('user')
   .exec((err, response) => {
     if (!err) {
@@ -35,6 +44,7 @@ const getTimelineQuest = (req, res)=>{
 
 const getAll = (req, res)=>{
   db.find({user:req.headers.oten.id})
+  .sort([['updatedAt', 'descending']])
   .populate('user')
   .then(rows=>{
     // console.log(rows);

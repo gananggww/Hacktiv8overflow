@@ -14,7 +14,7 @@ const state = {
   login: [],
   signup: [],
   createQuest: null,
-  questions: null,
+  questions: [],
   questID: null,
   myquest: null,
   answerTemp: []
@@ -63,7 +63,7 @@ const mutations = {
     state.signup = payload
   },
   setCreateQuest (state, payload) {
-    state.questions.unshift(payload)
+    state.questions.push(payload)
     state.createQuest = payload
   },
   setQuestions (state, payload) {
@@ -79,7 +79,7 @@ const mutations = {
     state.myquest.splice(payload.idx, 1)
   },
   setPostAnswer (state, payload) {
-    state.answerTemp.unshift(payload)
+    state.answerTemp.push(payload)
   },
   setGetAnswer (state, payload) {
     state.answerTemp = payload

@@ -10,16 +10,22 @@ const insert = (req, res)=>{
     questions: req.params.id
   })
   .then(response=>{
-    res.send(response)
-    dbQuestions.update({
-      _id: req.params.id
-    }, {
-      $push: {
-        answers: response._id
+    response.populate('user questions', (err)=> {
+      if (!err) {
+        res.send(response)
+        dbQuestions.update({
+          _id: req.params.id
+        }, {
+          $push: {
+            answers: response._id
+          }
+        })
+        .then(response => {
+          res.send(response)
+        })
+      } else {
+        res.send(err)
       }
-    })
-    .then(response => {
-      res.send(response)
     })
   })
   .catch(err=>{
@@ -31,14 +37,14 @@ const getAll = (req, res)=>{
   db.find({
     questions:req.params.id
   })
+  .sort([['updatedAt', 'descending']])
   .populate('user')
   .populate('questions')
-  .exec((err, response)=>{
-    if (!err) {
-      res.send(response)
-    } else {
-      res.send(err)
-    }
+  .then(rows=>{
+    res.send(rows)
+  })
+  .catch(err=>{
+  res.send(err)
   })
 }
 const remove = (req, res)=>{
