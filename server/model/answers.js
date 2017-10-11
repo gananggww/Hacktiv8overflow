@@ -6,7 +6,7 @@ let answersSchema = new Schema({
   answer: String,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users',
+    ref: 'users'
     // required: true
   },
   questions: {

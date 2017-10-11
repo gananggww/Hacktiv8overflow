@@ -9,19 +9,24 @@ const insert = (req, res)=>{
     user: req.headers.oten.id,
     answers: []
   })
-  .then(response=>{
-    res.send(response)
-  })
-  .catch(err=>{
-    res.send(err)
+  .exec((err, response) => {
+    if (!err) {
+      res.send(response)
+    } else {
+      res.send(err)
+    }
   })
 }
 
 const getTimelineQuest = (req, res)=>{
   db.find()
   .populate('user')
-  .then(response => {
-    res.send(response)
+  .exec((err, response) => {
+    if (!err) {
+      res.send(response)
+    } else {
+      res.send(err)
+    }
   })
   .catch(err => {
     res.send(err)

@@ -11,8 +11,6 @@ const insert = (req, res)=>{
   })
   .then(response=>{
     res.send(response)
-    console.log(response)
-    console.log(req.params.id);
     dbQuestions.update({
       _id: req.params.id
     }, {
@@ -28,19 +26,19 @@ const insert = (req, res)=>{
     res.send(err)
   })
 }
+
 const getAll = (req, res)=>{
   db.find({
     questions:req.params.id
   })
   .populate('user')
   .populate('questions')
-  .then(rows=>{
-    // console.log(rows);
-    res.send(rows)
-  })
-  .catch(err=>{
-  res.send(err)
-    // console.log(err);
+  .exec((err, response)=>{
+    if (!err) {
+      res.send(response)
+    } else {
+      res.send(err)
+    }
   })
 }
 const remove = (req, res)=>{

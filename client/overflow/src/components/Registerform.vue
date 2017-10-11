@@ -5,19 +5,19 @@
     <form class="ui segment form">
       <div class="field">
         <label>Full Name</label>
-        <input type="text" name="first-name" v-model="formRegister.fullname" placeholder="Full Name">
+        <input type="text"  v-model="formRegister.name" placeholder="Full Name">
       </div>
       <div class="field">
         <label>E-mail</label>
-        <input type="text" name="first-name" v-model="formRegister.email" placeholder="E-mail">
+        <input type="text"  v-model="formRegister.email" placeholder="E-mail">
       </div>
       <div class="field">
         <label>Username</label>
-        <input type="text" name="first-name" v-model="formRegister.username" placeholder="Username">
+        <input type="text"  v-model="formRegister.username" placeholder="Username">
       </div>
       <div class="field">
         <label>password</label>
-        <input type="password" name="last-name" v-model="formRegister.password" placeholder="Password">
+        <input type="password"  v-model="formRegister.password" placeholder="Password">
       </div>
       <router-link :to="'/login'"><button class="ui orange button" type="submit" @click="register()">Submit</button></router-link>
     </form>
@@ -31,7 +31,7 @@ export default {
   data () {
     return {
       formRegister: {
-        fullname: '',
+        name: '',
         email: '',
         username: '',
         password: ''

@@ -36,7 +36,7 @@
             </div>
             <div class="horizontal segments extra">
               <span>
-                <a class="item" @click="doDelMyQuest(all._id)"><i class="user icon"></i>{{all.user}}</a>
+                <a class="item" @click="doDelMyQuest(all._id)"><i class="user icon"></i>{{all.user.name}}</a>
                 <i class="history icon"></i>{{all.updatedAt}}
               </span>
             </div>

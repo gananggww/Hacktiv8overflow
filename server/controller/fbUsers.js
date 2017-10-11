@@ -1,4 +1,4 @@
-const db = require('../model/fbUsers')
+const db = require('../model/users')
 const jwt = require('jsonwebtoken')
 const FB = require('fb')
 

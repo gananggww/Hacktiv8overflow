@@ -6,20 +6,15 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  fb_id: String,
   email: {
     type: String,
-    required: true,
-    unique: true
-  },
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
     required: true
-  }
+    // unique: true
+  },
+  img: String,
+  username: String,
+  password: String
 }, {
   timestamps: true
 })

@@ -3,7 +3,7 @@ const db = require("../model/users")
 const jwt = require('jsonwebtoken');
 
 const getAll = (req, res)=>{
- db.find().populate('answers')
+ db.find()
  .then(rows=>{
    res.send(rows)
  })
@@ -35,14 +35,16 @@ const login = (req, res)=>{
 
 const register = (req, res)=>{
   db.create({
-    fullname: req.body.fullname,
+    name: req.body.name,
     email: req.body.email,
     username : req.body.username,
     password : req.body.password,
-  }).then(()=>{
+  }).then(response => {
+    console.log(response);
     res.send("Berhasil menambahkan")
   })
   .catch(err=>{
+    console.log(err);
     res.send("Gagal menambahkan")
   })
 }

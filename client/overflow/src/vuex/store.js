@@ -17,7 +17,7 @@ const state = {
   questions: null,
   questID: null,
   myquest: null,
-  answerTemp: null
+  answerTemp: []
 }
 const getters = {
   filterTimeline: (state, getters) => (model) => {
@@ -79,7 +79,7 @@ const mutations = {
     state.myquest.splice(payload.idx, 1)
   },
   setPostAnswer (state, payload) {
-    state.answerTemp.push(payload)
+    state.answerTemp.unshift(payload)
   },
   setGetAnswer (state, payload) {
     state.answerTemp = payload
@@ -103,12 +103,13 @@ const actions = {
   },
   createUser (context, payload) {
     http.post('/users/register', {
-      fullname: payload.fullname,
+      name: payload.name,
       email: payload.email,
       username: payload.username,
       password: payload.password
     })
     .then(response => {
+      console.log(response)
       context.commit('setUserCreate', response.data)
     })
     .catch(err => {
