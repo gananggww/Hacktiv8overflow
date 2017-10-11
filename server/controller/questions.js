@@ -6,6 +6,7 @@ const insert = (req, res)=>{
   db.create({
     title: req.body.title,
     content: req.body.content,
+    upvote: req.body.vote,
     user: req.headers.oten.id,
     answers: []
   })

@@ -5,6 +5,10 @@ const Schema = mongoose.Schema
 let questionSchema = new Schema({
   title: String,
   content: String,
+  upvote: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users'
