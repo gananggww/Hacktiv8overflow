@@ -17,9 +17,15 @@
             </div>
           </div>
           <div class="fourteen wide column">
-            <div class="content">
-              <a class="header"><b>{{all.title}}</b></a>
-
+            <div class=" content">
+              <div class="ui stackable two column grid">
+                <div class="thirteen wide column">
+                  <div class="header"><b>{{all.title}}</b></div>
+                </div>
+                <div class="three wide column">
+                  <Votequestions v-show="tokenUser !== null"/>
+                </div>
+              </div>
               <div class="ui divider meta">
               </div>
               <div class="description">
@@ -27,16 +33,13 @@
               </div>
               <div class="ui divider meta">
               </div>
-              <div class="extra">
-                <p>
-                  <a class="item" @click="doDelMyQuest(all._id)"></a>
+              <div class=" extra">
                   <i class="user icon"></i>{{all.user.name}}
-                </p>
-                </div>
               </div>
             </div>
+          </div>
             <!-- {{all}} -->
-            <div @click="showField(all._id)"class="ui fluid  blue button">Answer</div>
+            <div v-show="tokenUser !== null" @click="showField(all._id)"class="ui fluid  blue button">Answer</div>
           </div>
           <div v-show="activated === true" class="ui form" @submit.privent="mamah()">
             <div class="field">
@@ -90,13 +93,18 @@
 </template>
 
 <script>
+import Votequestions from '@/components/Votequestions'
 import { mapActions, mapState } from 'vuex'
 export default {
+  components: {
+    Votequestions
+  },
   props: ['id'],
   data () {
     return {
       activated: false,
       idUser: localStorage.getItem('id'),
+      tokenUser: localStorage.getItem('token'),
       answer: ''
     }
   },

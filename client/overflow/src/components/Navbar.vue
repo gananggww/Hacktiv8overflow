@@ -10,7 +10,7 @@
       <buttonmyquestion v-show="token !== null  "/>
 
       <div class="right menu">
-        <Buttonprofile v-show="token !== null"/>
+        <!-- <Buttonprofile v-show="token !== null"/> -->
         <!-- <a class="item" @click="check()">Help</a> -->
         <!-- <a class="item">Sign Up</a> -->
         <loginbutton v-if="token === null"/>

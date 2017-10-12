@@ -4,7 +4,7 @@
     <!-- <h1>HOME</h1> -->
     <div class="ui stackable container one column segment grid">
       <div class="column">
-        <Menumain/>
+        <Menumain></Menumain>
         <!-- <Questionform v-show="token !== null"/> -->
       </div>
       <div class="column">

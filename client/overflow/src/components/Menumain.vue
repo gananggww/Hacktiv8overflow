@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="ui two item menu">
     <!-- <router-view/> -->
-      <a @click="goQuest" class="item" v-bind:class="{'active': isActiveTimeline}"><i class="unordered list icon"></i>Timeline</a>
-      <a @click="goForm" class="item" v-bind:class="{'active': isActiveForm}"><i class="history icon"></i>Lets Question</a>
+      <a v-show="local !== null" @click="goQuest" class="item" v-bind:class="{'active': isActiveTimeline}"><i class="unordered list icon"></i>Timeline</a>
+      <a v-show="local !== null" @click="goForm" class="item" v-bind:class="{'active': isActiveForm}"><i class="history icon"></i>Lets Question</a>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ export default {
   data () {
     return {
       isActiveTimeline: false,
-      isActiveForm: false
+      isActiveForm: false,
+      local: localStorage.getItem('token')
     }
   },
   methods: {
