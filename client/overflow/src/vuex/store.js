@@ -7,7 +7,7 @@ vue.use(vuex)
 vue.use(router)
 
 const http = axios.create({
-  baseURL: `http://localhost:3000`
+  baseURL: `http://35.194.180.181:3000`
 })
 
 const state = {
